@@ -1,0 +1,14 @@
+output_style = :compressed
+sass_dir = 'app/styles'
+css_dir = '.tmp/styles'
+generated_images_dir = '.tmp/images/generated'
+images_dir = 'app/images'
+javascripts_dir = 'app/scripts'
+fonts_dir = 'app/styles/fonts'
+additional_import_paths = ['app/bower_components']
+http_images_path = '/images'
+http_generated_images_path = '/images/generated'
+http_fonts_path = '/styles/fonts'
+relative_assets = false
+asset_cache_buster = :none
+preferred_syntax = :sass
