@@ -54,6 +54,8 @@ gulp.task 'css', ->
         'app/styles/{,*/}*.css'
     ])
         .pipe(concat('styles.css'))
+        .pipe(rename('styles.min.css'))
+        .pipe(autoprefixer('last 2 version'))
         .pipe(csso())
         .pipe(gulp.dest('dist/styles'))
 
@@ -75,7 +77,7 @@ gulp.task 'livereload', ->
         'app/{,*/}*.html'
         '.tmp/styles/{,*/}*.css'
         'app/images/{,*/}*.{gif,jpeg,jpg,png,svg,webp}'
-    ])
+    ], read:false)
         .pipe(livereload(server))
         # .pipe(notify(message:'Livereload task complete'))
 
