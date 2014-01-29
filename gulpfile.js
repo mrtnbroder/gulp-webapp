@@ -55,9 +55,7 @@ connect.options = {
   hostname: 'localhost'
 };
 
-gulp.task('default', function() {
-  return gulp.run('server');
-});
+gulp.task('default', ['server'], function() {});
 
 gulp.task('server', ['watch'], function() {
   var app;
@@ -76,9 +74,7 @@ gulp.task('compass', function() {
   })).pipe(livereload(server)).pipe(gulp.dest('.tmp/styles/'));
 });
 
-gulp.task('usemin', function() {
-  return gulp.run('grunt-build');
-});
+gulp.task('usemin', ['grunt-build'], function() {});
 
 gulp.task('livereload', function() {
   return gulp.src(['app/{,*/}*.html', '.tmp/styles/{,*/}*.css', 'app/images/{,*/}*.{gif,jpeg,jpg,png,svg,webp}'], {
@@ -91,13 +87,11 @@ gulp.task('watch', function() {
     if (err) {
       return console.log(err);
     }
-    gulp.watch('app/{,*/}*.html', function(event) {
-      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-      return gulp.run('livereload');
+    gulp.watch('app/{,*/}*.html', ['livereload'], function(event) {
+      return console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
-    return gulp.watch('app/styles/{,*/}*.{scss,sass}', function(event) {
-      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-      return gulp.run('compass');
+    return gulp.watch('app/styles/{,*/}*.{scss,sass}', ['compass'], function(event) {
+      return console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
   });
 });

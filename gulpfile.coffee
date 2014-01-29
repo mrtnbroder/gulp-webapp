@@ -35,8 +35,9 @@ connect.options =
     hostname: 'localhost'
 
 
-gulp.task 'default', ->
-    gulp.run 'server'
+
+
+gulp.task 'default', ['server'],  ->
 
 
 gulp.task 'server', ['watch'], ->
@@ -68,8 +69,7 @@ gulp.task 'compass', ->
         # .pipe(notify(message: "Compass task complete"))
 
 
-gulp.task 'usemin', ->
-    gulp.run 'grunt-build'
+gulp.task 'usemin', ['grunt-build'], ->
 
 
 gulp.task 'livereload', ->
@@ -90,10 +90,8 @@ gulp.task 'watch', ->
         # gulp.watch 'gulpfile.js', (event) ->
         #     console.log 'File ' + event.path + ' was ' + event.type + ', running tasks...'
 
-        gulp.watch 'app/{,*/}*.html', (event) ->
+        gulp.watch 'app/{,*/}*.html', ['livereload'], (event) ->
             console.log 'File ' + event.path + ' was ' + event.type + ', running tasks...'
-            gulp.run 'livereload'
 
-        gulp.watch 'app/styles/{,*/}*.{scss,sass}', (event) ->
+        gulp.watch 'app/styles/{,*/}*.{scss,sass}', ['compass'], (event) ->
             console.log 'File ' + event.path + ' was ' + event.type + ', running tasks...'
-            gulp.run 'compass'
